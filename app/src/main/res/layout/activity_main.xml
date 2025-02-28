@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <GridLayout
+        android:id="@+id/toolGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <Button
+            android:id="@+id/btnMergePDF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Merge PDF"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary"
+            android:onClick="openMergePDF" />
+
+        <Button
+            android:id="@+id/btnSplitPDF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Split PDF"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary"
+            android:onClick="openSplitPDF" />
+
+        <Button
+            android:id="@+id/btnCompressPDF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Compress PDF"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary"
+            android:onClick="openCompressPDF" />
+
+        <Button
+            android:id="@+id/btnPDFToWord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PDF to Word"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary"
+            android:onClick="openPDFToWord" />
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
