@@ -3,6 +3,7 @@ agp = "8.7.3"
 compiler = "4.12.0"
 filepicker = "1.1.1"
 itext7Core = "7.2.3"
+itext7CoreVersion = "7.1.15"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -19,6 +20,7 @@ compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compi
 filepicker = { module = "com.github.angads25:filepicker", version.ref = "filepicker" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "compiler" }
 itext7-core = { module = "com.itextpdf:itext7-core", version.ref = "itext7Core" }
+itext7-core-v7115 = { module = "com.itextpdf:itext7-core", version.ref = "itext7CoreVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
