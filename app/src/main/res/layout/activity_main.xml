@@ -7,50 +7,52 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <GridLayout
-        android:id="@+id/toolGrid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2"
-        android:rowCount="3"
-        android:padding="16dp"
-        android:background="@color/white">
+    <Button
+        android:id="@+id/btnMergePDF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Merge PDF"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/primary"
+        android:onClick="openMergePDF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:id="@+id/btnMergePDF"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Merge PDF"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/primary"
-            android:onClick="openMergePDF" />
+    <Button
+        android:id="@+id/btnSplitPDF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Split PDF"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/primary"
+        android:onClick="openSplitPDF"
+        app:layout_constraintTop_toBottomOf="@id/btnMergePDF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:id="@+id/btnSplitPDF"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Split PDF"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/primary"
-            android:onClick="openSplitPDF" />
+    <Button
+        android:id="@+id/btnCompressPDF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Compress PDF"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/primary"
+        android:onClick="openCompressPDF"
+        app:layout_constraintTop_toBottomOf="@id/btnSplitPDF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:id="@+id/btnCompressPDF"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Compress PDF"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/primary"
-            android:onClick="openCompressPDF" />
-
-        <Button
-            android:id="@+id/btnPDFToWord"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="PDF to Word"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/primary"
-            android:onClick="openPDFToWord" />
-    </GridLayout>
+    <Button
+        android:id="@+id/btnPDFToWord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="PDF to Word"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/primary"
+        android:onClick="openPDFToWord"
+        app:layout_constraintTop_toBottomOf="@id/btnCompressPDF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

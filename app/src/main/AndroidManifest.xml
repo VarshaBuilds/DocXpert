@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Permissions -->
-    <!-- For Android 10 (API 29) and below -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- For Android 11+ (API 30 and above) - Requires special Google Play approval -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Scoped Storage for Android 11+ -->
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -25,31 +27,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DocExpert"
         tools:targetApi="31">
-        <activity
-            android:name=".PDFToWordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CompressPDFActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SplitPDFActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MergePDFActivity"
-            android:exported="false" /> <!-- Allow legacy storage access for Android 10 -->
+
+        <activity android:name=".PDFToWordActivity" android:exported="false" />
+        <activity android:name=".CompressPDFActivity" android:exported="false" />
+        <activity android:name=".SplitPDFActivity" android:exported="false" />
+        <activity android:name=".MergePDFActivity" android:exported="false" />
+
         <meta-data
             android:name="android:requestLegacyExternalStorage"
             android:value="true" />
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Intent Queries (for accessing file pickers) -->
+        </activity>
 
     </application>
 

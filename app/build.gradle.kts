@@ -53,5 +53,8 @@ dependencies {
 
         // Material Design UI Components
         implementation(libs.material.v170)
+
+        //used to create word doc
+        implementation(libs.apache.poi.ooxml)
     }
 
