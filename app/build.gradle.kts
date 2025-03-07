@@ -41,20 +41,21 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-        // PDF Processing (iText)
-        implementation(libs.itext7.core)
+    // PDF Processing (iText)
+    implementation(libs.itext7.core)
 
-        // File Picker (for selecting PDFs)
-        implementation(libs.filepicker)
+    // File Picker (for selecting PDFs)
+    implementation(libs.filepicker)
 
-        // Image Loading (for thumbnails)
-        implementation(libs.glide)
-        annotationProcessor(libs.compiler)
+    // Image Loading (for thumbnails)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
-        // Material Design UI Components
-        implementation(libs.material.v170)
+    // Material Design UI Components
+    implementation(libs.material.v170)
 
-        //used to create word doc
-        implementation(libs.apache.poi.ooxml)
-    }
+    //used to create word doc
+    implementation(libs.apache.poi.ooxml)
+
+}
 

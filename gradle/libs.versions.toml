@@ -12,6 +12,7 @@ material = "1.12.0"
 activity = "1.10.0"
 constraintlayout = "2.2.0"
 materialVersion = "1.7.0"
+poiOoxml = "5.2.5"
 poiOoxmlVersion = "5.2.3"
 
 [libraries]
@@ -29,6 +30,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 material-v170 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+poi = { module = "org.apache.poi:poi", version.ref = "poiOoxmlVersion" }
+poi-ooxml-v525 = { module = "org.apache.poi:poi-ooxml", version.ref = "poiOoxml" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
