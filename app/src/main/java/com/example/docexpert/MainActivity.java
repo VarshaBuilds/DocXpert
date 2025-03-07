@@ -31,4 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public void openPDFToImage(View view) {
         startActivity(new Intent(this, PDFToImageActivity.class));
     }
+
+    public void openOCR(View view) {
+        startActivity(new Intent(this, OCRActivity.class));
+    }
 }

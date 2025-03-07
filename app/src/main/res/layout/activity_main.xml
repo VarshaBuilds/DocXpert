@@ -67,4 +67,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <Button
+        android:id="@+id/btnOCR"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="OCR - Extract Text"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/primary"
+        android:onClick="openOCR"
+        app:layout_constraintTop_toBottomOf="@id/btnPDFToImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

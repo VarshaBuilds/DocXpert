@@ -19,6 +19,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { setUrl("https://repository.aspose.com/repo/") }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
