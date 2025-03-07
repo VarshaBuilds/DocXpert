@@ -1,3 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DocExpert</string>
+    
+    <!-- OCR Activity Strings -->
+    <string name="select_pdf">Select PDF File</string>
+    <string name="extract_text">Extract Text</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="selected_file">Selected file: %1$s</string>
+    <string name="processing_pdf">Processing PDF…</string>
+    <string name="extracting_embedded_text">Extracting embedded text from PDF…</string>
+    <string name="using_ocr">PDF appears to be scanned or has little text. Using OCR…</string>
+    <string name="no_text_extracted">No text could be extracted from this PDF.</string>
+    <string name="saving_text">Saving extracted text…</string>
+    <string name="text_saved_to">Text saved to: %1$s</string>
+    <string name="text_extracted_success">Text extracted successfully!</string>
+    <string name="failed_to_save">Failed to save extracted text</string>
+    <string name="error_extracting">Error extracting text: %1$s</string>
+    <string name="error_during_extraction">Error occurred during text extraction: %1$s</string>
+    <string name="ocr_failed_for_page">OCR failed for page %1$d</string>
+    <string name="error_opening_file">Error opening file: %1$s</string>
+    <string name="no_app_found">No app found to open text files. Please install a text editor from the Play Store.</string>
+    <string name="permissions_required">Storage permissions are required for this app to function properly</string>
+    <string name="permissions_required_files">Storage permissions are required to select files</string>
+    <string name="permissions_required_extract">Storage permissions are required to extract text</string>
+    <string name="error_saving_file">Error saving file: %1$s</string>
+    <string name="select_pdf_first">Please select a PDF file first</string>
+    <string name="open_with">Open with</string>
 </resources>

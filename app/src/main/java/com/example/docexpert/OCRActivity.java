@@ -59,10 +59,13 @@ public class OCRActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-    private static final String[] REQUIRED_PERMISSIONS_API_33 = {
-            Manifest.permission.READ_MEDIA_IMAGES,
-            Manifest.permission.READ_MEDIA_VIDEO
-    };
+    // Use string literals for API 33+ permissions to avoid lint warnings
+    private static final String[] REQUIRED_PERMISSIONS_API_33 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+            ? new String[] {
+                    "android.permission.READ_MEDIA_IMAGES",
+                    "android.permission.READ_MEDIA_VIDEO"
+            }
+            : new String[0];
 
     private Uri selectedPdfUri;
     private TextView selectedFileTextView;
@@ -79,7 +82,7 @@ public class OCRActivity extends AppCompatActivity {
                 if (uri != null) {
                     selectedPdfUri = uri;
                     String fileName = getFileNameFromUri(uri);
-                    selectedFileTextView.setText("Selected file: " + fileName);
+                    selectedFileTextView.setText(getString(R.string.selected_file, fileName));
                     extractTextButton.setEnabled(true);
                 }
             });
@@ -151,8 +154,7 @@ public class OCRActivity extends AppCompatActivity {
             }
 
             if (!allGranted) {
-                Toast.makeText(this, "Storage permissions are required for this app to function properly",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.permissions_required, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -163,14 +165,14 @@ public class OCRActivity extends AppCompatActivity {
                 selectPdfFile();
             } else {
                 checkAndRequestPermissions();
-                Toast.makeText(this, "Storage permissions are required to select files", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permissions_required_files, Toast.LENGTH_SHORT).show();
             }
         } else {
             if (hasPermissions(REQUIRED_PERMISSIONS)) {
                 selectPdfFile();
             } else {
                 checkAndRequestPermissions();
-                Toast.makeText(this, "Storage permissions are required to select files", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permissions_required_files, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -181,14 +183,14 @@ public class OCRActivity extends AppCompatActivity {
                 extractTextFromPdf();
             } else {
                 checkAndRequestPermissions();
-                Toast.makeText(this, "Storage permissions are required to extract text", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permissions_required_extract, Toast.LENGTH_SHORT).show();
             }
         } else {
             if (hasPermissions(REQUIRED_PERMISSIONS)) {
                 extractTextFromPdf();
             } else {
                 checkAndRequestPermissions();
-                Toast.makeText(this, "Storage permissions are required to extract text", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permissions_required_extract, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -198,37 +200,38 @@ public class OCRActivity extends AppCompatActivity {
     }
 
     private String getFileNameFromUri(Uri uri) {
-        String result = uri.getPath();
-        int cut = result.lastIndexOf('/');
-        if (cut != -1) {
-            result = result.substring(cut + 1);
+        String result = uri != null ? uri.getPath() : "";
+        if (result != null && result.contains("/")) {
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
         }
         return result;
     }
 
     private void extractTextFromPdf() {
         if (selectedPdfUri == null) {
-            Toast.makeText(this, "Please select a PDF file first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.select_pdf_first, Toast.LENGTH_SHORT).show();
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
         extractTextButton.setEnabled(false);
-        statusTextView.setText("Processing PDF...");
+        statusTextView.setText(R.string.processing_pdf);
 
         executorService.execute(() -> {
             StringBuilder textBuilder = new StringBuilder();
 
             try {
                 // First try to extract text directly from PDF
-                runOnUiThread(() -> statusTextView.setText("Extracting embedded text from PDF..."));
+                runOnUiThread(() -> statusTextView.setText(R.string.extracting_embedded_text));
                 extractTextDirectly(textBuilder);
 
                 // If direct extraction yields little text, use OCR on rendered pages
                 if (textBuilder.length() < 100) {
                     textBuilder.setLength(0); // Clear previous results
-                    runOnUiThread(
-                            () -> statusTextView.setText("PDF appears to be scanned or has little text. Using OCR..."));
+                    runOnUiThread(() -> statusTextView.setText(R.string.using_ocr));
                     extractTextWithOCR(textBuilder);
                 }
 
@@ -237,16 +240,16 @@ public class OCRActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         progressBar.setVisibility(View.GONE);
                         extractTextButton.setEnabled(true);
-                        statusTextView.setText("No text could be extracted from this PDF.");
+                        statusTextView.setText(R.string.no_text_extracted);
                         Toast.makeText(OCRActivity.this,
-                                "No text could be extracted from this PDF.",
+                                R.string.no_text_extracted,
                                 Toast.LENGTH_LONG).show();
                     });
                     return;
                 }
 
                 // Save extracted text to file
-                runOnUiThread(() -> statusTextView.setText("Saving extracted text..."));
+                runOnUiThread(() -> statusTextView.setText(R.string.saving_text));
                 String extractedText = textBuilder.toString();
                 File outputFile = saveTextToFile(extractedText);
 
@@ -256,25 +259,25 @@ public class OCRActivity extends AppCompatActivity {
 
                     if (outputFile != null) {
                         Snackbar.make(findViewById(android.R.id.content),
-                                "Text extracted successfully!",
+                                getString(R.string.text_extracted_success),
                                 Snackbar.LENGTH_LONG)
                                 .setAction("Open", v -> openTextFile(outputFile))
                                 .show();
                     } else {
                         Toast.makeText(OCRActivity.this,
-                                "Failed to save extracted text",
+                                R.string.failed_to_save,
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("OCRActivity", "Error extracting text", e);
                 runOnUiThread(() -> {
                     progressBar.setVisibility(View.GONE);
                     extractTextButton.setEnabled(true);
-                    statusTextView.setText("Error occurred during text extraction: " + e.getMessage());
+                    statusTextView.setText(getString(R.string.error_during_extraction, e.getMessage()));
                     Toast.makeText(OCRActivity.this,
-                            "Error extracting text: " + e.getMessage(),
+                            getString(R.string.error_extracting, e.getMessage()),
                             Toast.LENGTH_SHORT).show();
                 });
             }
@@ -363,7 +366,7 @@ public class OCRActivity extends AppCompatActivity {
                 if (exception != null) {
                     Log.e("OCRActivity", "Text recognition failed", exception);
                 }
-                textBuilder.append("OCR failed for page ").append(pageNum).append("\n\n");
+                textBuilder.append(getString(R.string.ocr_failed_for_page, pageNum)).append("\n\n");
             }
 
             // Clean up
@@ -432,15 +435,15 @@ public class OCRActivity extends AppCompatActivity {
             // Notify the user where the file was saved
             final String finalPath = outputFile.getAbsolutePath();
             runOnUiThread(() -> {
-                statusTextView.setText("Text saved to: " + finalPath);
+                statusTextView.setText(getString(R.string.text_saved_to, finalPath));
             });
 
             return outputFile;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("OCRActivity", "Error saving file", e);
             runOnUiThread(() -> {
                 Toast.makeText(OCRActivity.this,
-                        "Error saving file: " + e.getMessage(),
+                        getString(R.string.error_saving_file, e.getMessage()),
                         Toast.LENGTH_LONG).show();
             });
             return null;
@@ -462,7 +465,7 @@ public class OCRActivity extends AppCompatActivity {
 
             // Check if there's an app that can handle this intent
             if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(Intent.createChooser(intent, "Open with"));
+                startActivity(Intent.createChooser(intent, getString(R.string.open_with)));
             } else {
                 // Try with a more generic mime type
                 Intent genericIntent = new Intent(Intent.ACTION_VIEW);
@@ -470,11 +473,11 @@ public class OCRActivity extends AppCompatActivity {
                 genericIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                 if (genericIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(Intent.createChooser(genericIntent, "Open with"));
+                    startActivity(Intent.createChooser(genericIntent, getString(R.string.open_with)));
                 } else {
                     // No app found, show a more helpful message
                     Toast.makeText(this,
-                            "No app found to open text files. Please install a text editor from the Play Store.",
+                            R.string.no_app_found,
                             Toast.LENGTH_LONG).show();
 
                     // Optionally, open Play Store to search for text editors
@@ -493,7 +496,7 @@ public class OCRActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("OCRActivity", "Error opening text file", e);
             Toast.makeText(this,
-                    "Error opening file: " + e.getMessage(),
+                    getString(R.string.error_opening_file, e.getMessage()),
                     Toast.LENGTH_LONG).show();
         }
     }
