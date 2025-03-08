@@ -44,18 +44,6 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/btnPDFToWord"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="PDF to Word"
-        android:layout_margin="8dp"
-        android:backgroundTint="@color/primary"
-        android:onClick="openPDFToWord"
-        app:layout_constraintTop_toBottomOf="@id/btnCompressPDF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <Button
         android:id="@+id/btnPDFToImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -63,7 +51,7 @@
         android:layout_margin="8dp"
         android:backgroundTint="@color/primary"
         android:onClick="openPDFToImage"
-        app:layout_constraintTop_toBottomOf="@id/btnPDFToWord"
+        app:layout_constraintTop_toBottomOf="@id/btnCompressPDF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -76,6 +64,18 @@
         android:backgroundTint="@color/primary"
         android:onClick="openOCR"
         app:layout_constraintTop_toBottomOf="@id/btnPDFToImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnPDFEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Edit PDF"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/primary"
+        android:onClick="openPDFEdit"
+        app:layout_constraintTop_toBottomOf="@id/btnOCR"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

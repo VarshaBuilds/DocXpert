@@ -49,6 +49,9 @@
             android:name=".OCRActivity"
             android:exported="false" />
         <activity
+            android:name=".ImageToPDFActivity"
+            android:exported="false" />
+        <activity
             android:name=".PDFToImageActivity"
             android:exported="false" />
         <activity

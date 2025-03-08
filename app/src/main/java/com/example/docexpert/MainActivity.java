@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, CompressPDFActivity.class));
     }
 
-    public void openPDFToWord(View view) {
-        startActivity(new Intent(this, PDFToWordActivity.class));
-    }
-
     public void openPDFToImage(View view) {
         startActivity(new Intent(this, PDFToImageActivity.class));
+    }
+
+    public void openPDFEdit(View view) {
+        startActivity(new Intent(this, PDFEditActivityNew.class));
     }
 
     public void openOCR(View view) {
