@@ -27,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
     public void openPDFToWord(View view) {
         startActivity(new Intent(this, PDFToWordActivity.class));
     }
-
     public void openPDFToImage(View view) {
         startActivity(new Intent(this, PDFToImageActivity.class));
+    }
+    public void openImageToPDF(View view) {
+        startActivity(new Intent(this, ImageToPDFActivity.class));
     }
 }
