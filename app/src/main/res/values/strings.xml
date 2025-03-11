@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DocXpert</string>
+    <string name="pdf_to_word">PDF to Word</string>
+    <string name="selected_file">Selected: %1$s</string>
+    <string name="select_pdf">Select PDF</string>
+    <string name="convert_to_word">Convert to Word</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="select_pdf_first">Please select a PDF file first</string>
+    <string name="conversion_success">PDF converted to Word successfully</string>
+    <string name="conversion_error">Error converting PDF to Word</string>
+    <string name="error_selecting_file">Error selecting file: %1$s</string>
+    <string name="error_creating_file">Error creating output file: %1$s</string>
+    <string name="error_converting">Error: %1$s</string>
+    <string name="word_to_pdf">Word to PDF</string>
+    <string name="word_to_pdf_description">Convert Word documents to PDF format</string>
+    <string name="word_to_pdf_icon">Word to PDF icon</string>
+    <string name="select_word_file">Select Word File</string>
+    <string name="convert_to_pdf">Convert to PDF</string>
+    <string name="merge_pdfs">Merge PDFs</string>
+    <string name="pdf_icon">PDF Icon</string>
+    <string name="remove_pdf">Remove PDF</string>
+    <string name="add_pdf">Add PDF</string>
+    <string name="merge_pdf_success">PDFs merged successfully</string>
+    <string name="merge_pdf_error">Error merging PDFs</string>
+    <string name="select_pdf_files">Select PDF Files</string>
+    <string name="save_merged_pdf">Save Merged PDF</string>
+</resources>
