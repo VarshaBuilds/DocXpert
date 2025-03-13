@@ -23,11 +23,6 @@
         </activity>
 
         <activity
-            android:name=".features.pdf2word.PdfToWordActivity"
-            android:exported="false"
-            android:label="@string/pdf_to_word"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".features.mergepdf.MergePdfActivity"
             android:exported="false"
             android:label="@string/merge_pdfs"

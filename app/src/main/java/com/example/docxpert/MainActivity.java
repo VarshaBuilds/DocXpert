@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.docxpert.databinding.ActivityMainBinding;
-import com.example.docxpert.features.pdf2word.PdfToWordActivity;
 import com.example.docxpert.features.mergepdf.MergePdfActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
@@ -34,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
         MaterialCardView pdfToWordCard = findViewById(R.id.pdfToWordCard);
         MaterialCardView mergePdfCard = findViewById(R.id.mergePdfCard);
 
-        pdfToWordCard.setOnClickListener(v -> {
-            Intent intent = new Intent(this, PdfToWordActivity.class);
-            startActivity(intent);
-        });
 
         mergePdfCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, MergePdfActivity.class);
