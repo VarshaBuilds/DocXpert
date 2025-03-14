@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DocXpert</string>
+    
+    <!-- PDF to Word -->
     <string name="pdf_to_word">PDF to Word</string>
     <string name="pdf_to_word_desc">Convert PDF files to Word documents</string>
+    <string name="convert_to_word">Convert to Word</string>
+    <string name="conversion_success">PDF converted to Word successfully</string>
+    <string name="conversion_error">Error converting PDF to Word</string>
+    
+    <!-- Merge PDF -->
     <string name="merge_pdf">Merge PDFs</string>
     <string name="merge_pdf_desc">Combine multiple PDF files into one</string>
+    <string name="merge_pdf_success">PDFs merged successfully</string>
+    <string name="merge_pdf_error">Error merging PDFs</string>
+    <string name="select_pdf_files">Select PDF Files</string>
+    <string name="save_merged_pdf">Save Merged PDF</string>
+    
+    <!-- Split PDF -->
     <string name="split_pdf">Split PDF</string>
     <string name="split_pdf_desc">Split a PDF file into multiple documents</string>
-    <string name="select_pdf">Select PDF</string>
-    <string name="no_file_selected">No file selected</string>
-    <string name="file_selected">Selected file: %1$s</string>
     <string name="page_range_hint">Enter pages to extract (e.g., 1-3,5,7-9)</string>
     <string name="page_range_helper">• Use commas to separate individual pages (1,3,5)\n• Use hyphen for page ranges (1-5)\n• You can combine both (1-3,5,7-9)</string>
     <string name="enter_page_range">Please enter the pages you want to extract</string>
@@ -18,13 +28,29 @@
     <string name="splitting_pdf">Splitting PDF…</string>
     <string name="split_success">PDF split successfully</string>
     <string name="split_error">Error splitting PDF</string>
-    <string name="convert_to_word">Convert to Word</string>
+    
+    <!-- Lock PDF -->
+    <string name="lock_pdf">Lock PDF</string>
+    <string name="lock_pdf_desc">Protect your PDF with a password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_requirements">• Password must be at least 6 characters long\n• Use a combination of letters, numbers, and special characters\n• Make sure to remember your password</string>
+    <string name="passwords_dont_match">Passwords do not match</string>
+    <string name="password_too_short">Password must be at least 6 characters long</string>
+    <string name="locking_pdf">Locking PDF…</string>
+    <string name="lock_success">PDF locked successfully</string>
+    <string name="lock_error">Error locking PDF</string>
+    
+    <!-- Common -->
+    <string name="select_pdf">Select PDF</string>
     <string name="select_pdf_first">Please select a PDF file first</string>
-    <string name="conversion_success">PDF converted to Word successfully</string>
-    <string name="conversion_error">Error converting PDF to Word</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="file_selected">Selected file: %1$s</string>
     <string name="error_selecting_file">Error selecting file: %1$s</string>
-    <string name="error_creating_file">Error creating output file: %1$s</string>
+    <string name="error_creating_file">Error creating file: %1$s</string>
     <string name="error_converting">Error: %1$s</string>
+    
+    <!-- Word to PDF -->
     <string name="word_to_pdf">Word to PDF</string>
     <string name="word_to_pdf_description">Convert Word documents to PDF format</string>
     <string name="word_to_pdf_icon">Word to PDF icon</string>
@@ -33,8 +59,4 @@
     <string name="pdf_icon">PDF Icon</string>
     <string name="remove_pdf">Remove PDF</string>
     <string name="add_pdf">Add PDF</string>
-    <string name="merge_pdf_success">PDFs merged successfully</string>
-    <string name="merge_pdf_error">Error merging PDFs</string>
-    <string name="select_pdf_files">Select PDF Files</string>
-    <string name="save_merged_pdf">Save Merged PDF</string>
 </resources>

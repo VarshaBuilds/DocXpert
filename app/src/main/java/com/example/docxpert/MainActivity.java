@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.docxpert.features.mergepdf.MergePdfActivity;
 import com.example.docxpert.features.splitpdf.SplitPdfActivity;
+import com.example.docxpert.features.lockpdf.LockPdfActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupFeatureCards() {
         MaterialCardView mergePdfCard = findViewById(R.id.mergePdfCard);
         MaterialCardView splitPdfCard = findViewById(R.id.splitPdfCard);
+        MaterialCardView lockPdfCard = findViewById(R.id.lockPdfCard);
 
         mergePdfCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, MergePdfActivity.class);
@@ -32,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         splitPdfCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, SplitPdfActivity.class);
+            startActivity(intent);
+        });
+
+        lockPdfCard.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LockPdfActivity.class);
             startActivity(intent);
         });
     }
