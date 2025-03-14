@@ -36,7 +36,6 @@
                 android:id="@+id/mergePdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_margin="8dp"
                 android:layout_columnWeight="1"
                 android:clickable="true"
@@ -53,7 +52,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_pdf_word"
+                        android:src="@drawable/ic_merge"
                         android:contentDescription="@string/merge_pdf"
                         app:tint="@color/design_default_color_secondary" />
 
@@ -64,6 +63,15 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/merge_pdf"
                         android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/merge_pdf_desc"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceBody2" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -72,7 +80,6 @@
                 android:id="@+id/splitPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_margin="8dp"
                 android:layout_columnWeight="1"
                 android:clickable="true"
@@ -89,7 +96,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_pdf_word"
+                        android:src="@drawable/ic_split"
                         android:contentDescription="@string/split_pdf"
                         app:tint="@color/design_default_color_secondary" />
 
@@ -100,6 +107,15 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/split_pdf"
                         android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/split_pdf_desc"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceBody2" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -108,7 +124,6 @@
                 android:id="@+id/lockPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_margin="8dp"
                 android:layout_columnWeight="1"
                 android:clickable="true"
@@ -136,6 +151,59 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/lock_pdf"
                         android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/lock_pdf_desc"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceBody2" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/unlockPdfCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_unlock"
+                        android:contentDescription="@string/unlock_pdf"
+                        app:tint="@color/design_default_color_secondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/unlock_pdf"
+                        android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/unlock_pdf_desc"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceBody2" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>

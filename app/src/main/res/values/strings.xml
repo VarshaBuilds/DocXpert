@@ -41,6 +41,16 @@
     <string name="lock_success">PDF locked successfully</string>
     <string name="lock_error">Error locking PDF</string>
     
+    <!-- Unlock PDF -->
+    <string name="unlock_pdf">Unlock PDF</string>
+    <string name="unlock_pdf_desc">Remove password protection from PDF</string>
+    <string name="enter_pdf_password">Enter PDF Password</string>
+    <string name="unlock_pdf_helper">Enter the password that was used to protect this PDF file</string>
+    <string name="unlocking_pdf">Unlocking PDF…</string>
+    <string name="unlock_success">PDF unlocked successfully</string>
+    <string name="unlock_error">Error unlocking PDF</string>
+    <string name="incorrect_password">Incorrect password</string>
+    
     <!-- Common -->
     <string name="select_pdf">Select PDF</string>
     <string name="select_pdf_first">Please select a PDF file first</string>
