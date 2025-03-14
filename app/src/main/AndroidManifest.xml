@@ -46,6 +46,10 @@
             android:name=".features.unlockpdf.UnlockPdfActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".features.signpdf.SignPdfActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

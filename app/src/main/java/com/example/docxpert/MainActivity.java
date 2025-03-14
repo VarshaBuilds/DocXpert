@@ -7,6 +7,7 @@ import com.example.docxpert.features.mergepdf.MergePdfActivity;
 import com.example.docxpert.features.splitpdf.SplitPdfActivity;
 import com.example.docxpert.features.lockpdf.LockPdfActivity;
 import com.example.docxpert.features.unlockpdf.UnlockPdfActivity;
+import com.example.docxpert.features.signpdf.SignPdfActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         MaterialCardView splitPdfCard = findViewById(R.id.splitPdfCard);
         MaterialCardView lockPdfCard = findViewById(R.id.lockPdfCard);
         MaterialCardView unlockPdfCard = findViewById(R.id.unlockPdfCard);
+        MaterialCardView signPdfCard = findViewById(R.id.signPdfCard);
 
         mergePdfCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, MergePdfActivity.class);
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         unlockPdfCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, UnlockPdfActivity.class);
+            startActivity(intent);
+        });
+
+        signPdfCard.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SignPdfActivity.class);
             startActivity(intent);
         });
     }

@@ -69,4 +69,24 @@
     <string name="pdf_icon">PDF Icon</string>
     <string name="remove_pdf">Remove PDF</string>
     <string name="add_pdf">Add PDF</string>
+    
+    <!-- Sign PDF -->
+    <string name="sign_pdf">Sign PDF</string>
+    <string name="sign_pdf_desc">Add your signature to PDF documents</string>
+    <string name="clear_signature">Clear</string>
+    <string name="draw_signature_first">Please draw your signature first</string>
+    <string name="signing_pdf">Signing PDF…</string>
+    <string name="signing_failed">Failed to sign PDF</string>
+    <string name="pdf_signed_successfully">PDF has been signed successfully</string>
+    
+    <!-- Sign PDF Accessibility -->
+    <string name="selected_file_status">Selected file status</string>
+    <string name="select_pdf_to_sign">Select a PDF file to sign</string>
+    <string name="signature_drawing_area">Signature drawing area</string>
+    <string name="clear_signature_desc">Clear signature and draw again</string>
+    <string name="add_signature_to_pdf">Add signature to PDF document</string>
+    
+    <!-- Common Dialog -->
+    <string name="success">Success</string>
+    <string name="ok">OK</string>
 </resources>
