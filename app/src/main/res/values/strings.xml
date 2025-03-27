@@ -113,4 +113,15 @@
     <string name="converting_to_pdf">Converting image to PDF…</string>
     <string name="image_to_pdf_success">Image converted to PDF successfully</string>
     <string name="image_to_pdf_error">Error converting image to PDF</string>
+    
+    <!-- PDF to Image -->
+    <string name="pdf_to_image">PDF to Image</string>
+    <string name="pdf_to_image_desc">Convert PDF pages to high-quality images</string>
+    <string name="convert_to_images">Convert to Images</string>
+    <string name="select_pdf_to_convert">Select a PDF file to convert to images</string>
+    <string name="converting_to_images">Converting PDF to images…</string>
+    <string name="pdf_to_image_success">PDF converted to images successfully</string>
+    <string name="pdf_to_image_error">Error converting PDF to images</string>
+    <string name="page_count">Total pages: %1$d</string>
+    <string name="select_output_folder">Select Output Folder</string>
 </resources>

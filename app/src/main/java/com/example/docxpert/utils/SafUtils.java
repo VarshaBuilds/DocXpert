@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import androidx.documentfile.provider.DocumentFile;
 
 public class SafUtils {
     private static final String TAG = "SafUtils";
@@ -150,5 +151,28 @@ public class SafUtils {
         intent.setType(mimeType);
         intent.putExtra(Intent.EXTRA_TITLE, fileName);
         launcher.launch(intent);
+    }
+
+    /**
+     * Creates a new file in the specified folder using DocumentFile
+     * @param context The context
+     * @param folderUri The URI of the folder where to create the file
+     * @param fileName The name of the file to create
+     * @param mimeType The MIME type of the file
+     * @return The URI of the created file, or null if creation failed
+     */
+    public static Uri createFile(Context context, Uri folderUri, String fileName, String mimeType) {
+        try {
+            DocumentFile folder = DocumentFile.fromTreeUri(context, folderUri);
+            if (folder != null) {
+                DocumentFile file = folder.createFile(mimeType, fileName);
+                if (file != null) {
+                    return file.getUri();
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error creating file: " + e.getMessage());
+        }
+        return null;
     }
 } 

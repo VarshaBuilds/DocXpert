@@ -72,6 +72,11 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity
+            android:name=".features.pdftoimage.PdfToImageActivity"
+            android:label="@string/pdf_to_image"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
