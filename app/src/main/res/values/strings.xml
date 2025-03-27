@@ -89,4 +89,13 @@
     <!-- Common Dialog -->
     <string name="success">Success</string>
     <string name="ok">OK</string>
+    
+    <!-- Compress PDF -->
+    <string name="compress_pdf">Compress PDF</string>
+    <string name="compress_pdf_desc">Reduce PDF file size while maintaining quality</string>
+    <string name="select_pdf_to_compress">Select a PDF file to compress</string>
+    <string name="compress_pdf_button_desc">Compress the selected PDF file</string>
+    <string name="compressing_pdf">Compressing PDF…</string>
+    <string name="compress_success">PDF compressed successfully</string>
+    <string name="compress_error">Error compressing PDF</string>
 </resources>
