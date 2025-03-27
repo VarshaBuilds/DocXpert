@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/main"
+    android:id="@+id/main"  
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -21,23 +21,25 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:columnCount="2"
-            android:rowCount="6">
+            android:padding="8dp">
 
+            <!-- Merge PDF Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mergePdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -72,16 +74,20 @@
                         android:text="@string/merge_pdf_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Split PDF Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/splitPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -116,16 +122,20 @@
                         android:text="@string/split_pdf_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Lock PDF Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/lockPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -160,16 +170,20 @@
                         android:text="@string/lock_pdf_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Unlock PDF Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/unlockPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -204,16 +218,20 @@
                         android:text="@string/unlock_pdf_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Sign PDF Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/signPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -248,16 +266,20 @@
                         android:text="@string/sign_pdf_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Compress PDF Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/compressPdfCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -284,19 +306,66 @@
                         android:text="@string/compress_pdf"
                         android:textAppearance="?attr/textAppearanceSubtitle1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="4dp"
                         android:text="@string/compress_pdf_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- More feature cards will be added here -->
+            <!-- Compress Image Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/compressImageCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_compress"
+                        android:contentDescription="@string/compress_image"
+                        app:tint="@color/design_default_color_secondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/compress_image"
+                        android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/compress_image_desc"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceBody2" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </GridLayout>
 
