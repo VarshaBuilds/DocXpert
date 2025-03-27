@@ -2,11 +2,25 @@
 <resources>
     <string name="app_name">DocXpert</string>
     
+    <!-- Common -->
+    <string name="success">Success</string>
+    <string name="ok">OK</string>
+    <string name="select_file">Select File</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="file_selected">Selected file: %1$s</string>
+    <string name="error_selecting_file">Error selecting file: %1$s</string>
+    <string name="error_creating_file">Error creating file: %1$s</string>
+    <string name="error_converting">Error: %1$s</string>
+    <string name="selected_file_status">Selected file status</string>
+    <string name="select_pdf">Select PDF</string>
+    <string name="select_pdf_first">Please select a PDF file first</string>
+    <string name="files_selected">Selected files:\n%1$s</string>
+    
     <!-- PDF to Word -->
     <string name="pdf_to_word">PDF to Word</string>
     <string name="pdf_to_word_desc">Convert PDF files to Word documents</string>
     <string name="convert_to_word">Convert to Word</string>
-    <string name="conversion_success">PDF converted to Word successfully</string>
+    <string name="pdf_to_word_success">PDF converted to Word successfully</string>
     <string name="conversion_error">Error converting PDF to Word</string>
     
     <!-- Merge PDF -->
@@ -51,15 +65,6 @@
     <string name="unlock_error">Error unlocking PDF</string>
     <string name="incorrect_password">Incorrect password</string>
     
-    <!-- Common -->
-    <string name="select_pdf">Select PDF</string>
-    <string name="select_pdf_first">Please select a PDF file first</string>
-    <string name="no_file_selected">No file selected</string>
-    <string name="file_selected">Selected file: %1$s</string>
-    <string name="error_selecting_file">Error selecting file: %1$s</string>
-    <string name="error_creating_file">Error creating file: %1$s</string>
-    <string name="error_converting">Error: %1$s</string>
-    
     <!-- Word to PDF -->
     <string name="word_to_pdf">Word to PDF</string>
     <string name="word_to_pdf_description">Convert Word documents to PDF format</string>
@@ -78,17 +83,10 @@
     <string name="signing_pdf">Signing PDF…</string>
     <string name="signing_failed">Failed to sign PDF</string>
     <string name="pdf_signed_successfully">PDF has been signed successfully</string>
-    
-    <!-- Sign PDF Accessibility -->
-    <string name="selected_file_status">Selected file status</string>
     <string name="select_pdf_to_sign">Select a PDF file to sign</string>
     <string name="signature_drawing_area">Signature drawing area</string>
     <string name="clear_signature_desc">Clear signature and draw again</string>
     <string name="add_signature_to_pdf">Add signature to PDF document</string>
-    
-    <!-- Common Dialog -->
-    <string name="success">Success</string>
-    <string name="ok">OK</string>
     
     <!-- Compress PDF -->
     <string name="compress_pdf">Compress PDF</string>
@@ -107,4 +105,12 @@
     <string name="image_preview">Image preview</string>
     <string name="compress_image_button_desc">Compress the selected image</string>
     <string name="compressing_image">Compressing image…</string>
+    
+    <!-- Image to PDF -->
+    <string name="image_to_pdf">Image to PDF</string>
+    <string name="image_to_pdf_desc">Convert images to PDF files</string>
+    <string name="select_image_to_convert">Select an image to convert to PDF</string>
+    <string name="converting_to_pdf">Converting image to PDF…</string>
+    <string name="image_to_pdf_success">Image converted to PDF successfully</string>
+    <string name="image_to_pdf_error">Error converting image to PDF</string>
 </resources>

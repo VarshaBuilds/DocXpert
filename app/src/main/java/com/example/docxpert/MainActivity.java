@@ -10,6 +10,7 @@ import com.example.docxpert.features.unlockpdf.UnlockPdfActivity;
 import com.example.docxpert.features.signpdf.SignPdfActivity;
 import com.example.docxpert.features.compresspdf.CompressPdfActivity;
 import com.example.docxpert.features.compressimage.CompressImageActivity;
+import com.example.docxpert.features.imagetopdf.ImageToPdfActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 
@@ -71,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
         MaterialCardView compressImageCard = findViewById(R.id.compressImageCard);
         compressImageCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, CompressImageActivity.class);
+            startActivity(intent);
+        });
+
+        // Setup Image to PDF Card
+        MaterialCardView imageToPdfCard = findViewById(R.id.imageToPdfCard);
+        imageToPdfCard.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ImageToPdfActivity.class);
             startActivity(intent);
         });
     }
