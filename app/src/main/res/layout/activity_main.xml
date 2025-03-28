@@ -450,9 +450,9 @@
                         android:text="@string/pdf_to_word"
                         android:textAppearance="?attr/textAppearanceSubtitle1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="4dp"
                         android:text="@string/pdf_to_word_desc"
@@ -504,6 +504,50 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="4dp"
                         android:text="@string/pdf_to_image_desc"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceBody2" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- PDF to Text Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/pdfToTextCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/pdf_to_text"
+                        app:srcCompat="@drawable/ic_pdf_text"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/pdf_to_text"
+                        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/pdf_to_text_desc"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody2" />
 

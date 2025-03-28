@@ -18,6 +18,7 @@ import com.example.docxpert.features.compressimage.CompressImageActivity;
 import com.example.docxpert.features.imagetopdf.ImageToPdfActivity;
 import com.example.docxpert.features.pdftoimage.PdfToImageActivity;
 import com.example.docxpert.features.ocr.OcrActivity;
+import com.example.docxpert.features.pdftotext.PdfToTextActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 
@@ -84,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
         // Setup OCR Card
         MaterialCardView ocrCard = findViewById(R.id.ocrCard);
         ocrCard.setOnClickListener(v -> startActivity(new Intent(this, OcrActivity.class)));
+
+        // Setup PDF to Text Card
+        MaterialCardView pdfToTextCard = findViewById(R.id.pdfToTextCard);
+        pdfToTextCard.setOnClickListener(v -> startActivity(new Intent(this, PdfToTextActivity.class)));
     }
 
     @Override

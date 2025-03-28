@@ -132,6 +132,18 @@
     <string name="pdf_to_image_error">Error converting PDF to images</string>
     <string name="convert_to_images">Convert to Images</string>
     
+    <!-- PDF to Text -->
+    <string name="pdf_to_text">PDF to Text</string>
+    <string name="pdf_to_text_desc">Extract text from PDF files</string>
+    <string name="select_pdf_to_extract">Select a PDF file to extract text</string>
+    <string name="extracting_text_from_pdf">Extracting text from PDF…</string>
+    <string name="pdf_text_extracted">Text extracted successfully</string>
+    <string name="pdf_text_extraction_error">Error extracting text from PDF</string>
+    <string name="save_extracted_text">Save Text</string>
+    <string name="text_saved">Text saved successfully</string>
+    <string name="text_save_error">Error saving text file</string>
+    <string name="extracted_text_will_appear_here">Extracted text will appear here</string>
+    
     <!-- OCR Feature -->
     <string name="extract_text">Extract Text</string>
     <string name="extract_text_desc">Extract text from images</string>

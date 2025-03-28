@@ -26,7 +26,7 @@ public class SafUtils {
 
     // Open file for reading
     public static ActivityResultLauncher<String[]> createOpenFileLauncher(
-            AppCompatActivity activity, 
+            AppCompatActivity activity,
             FileOperationCallback callback) {
         return activity.registerForActivityResult(
             new ActivityResultContracts.OpenDocument(),
@@ -50,7 +50,7 @@ public class SafUtils {
 
     // Create file for writing with timestamp
     public static ActivityResultLauncher<String> createSaveFileLauncher(
-            AppCompatActivity activity, 
+            AppCompatActivity activity,
             String originalFileName,
             String targetExtension,
             FileOperationCallback callback) {

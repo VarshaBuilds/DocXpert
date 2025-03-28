@@ -86,6 +86,12 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity
+            android:name=".features.pdftotext.PdfToTextActivity"
+            android:label="@string/pdf_to_text"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
