@@ -77,6 +77,15 @@
             android:label="@string/pdf_to_image"
             android:parentActivityName=".MainActivity" />
 
+        <activity
+            android:name=".features.ocr.OcrActivity"
+            android:label="@string/extract_text"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

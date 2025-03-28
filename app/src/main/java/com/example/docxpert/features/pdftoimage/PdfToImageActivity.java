@@ -189,7 +189,7 @@ public class PdfToImageActivity extends AppCompatActivity {
                     progressIndicator.setVisibility(View.GONE);
                     convertButton.setEnabled(true);
                     selectPdfButton.setEnabled(true);
-                    Toast.makeText(this, getString(R.string.error_converting, e.getMessage()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.pdf_to_image_error, Toast.LENGTH_SHORT).show();
                 });
             }
         }).start();

@@ -28,7 +28,7 @@ public class ImageToPdfActivity extends AppCompatActivity {
     private static final int PICK_PDF_SAVE = 1;
     private List<Uri> selectedImageUris;
     private TextView selectedFileText;
-    private Button selectImageButton;
+    private Button selectButton;
     private Button convertButton;
     private LinearLayout previewContainer;
     private ScrollView previewScrollView;
@@ -65,23 +65,25 @@ public class ImageToPdfActivity extends AppCompatActivity {
 
     private void initializeViews() {
         selectedFileText = findViewById(R.id.selectedFileText);
-        selectImageButton = findViewById(R.id.selectImageButton);
+        selectButton = findViewById(R.id.selectButton);
         convertButton = findViewById(R.id.convertButton);
         previewContainer = findViewById(R.id.previewContainer);
         previewScrollView = findViewById(R.id.previewScrollView);
         progressIndicator = findViewById(R.id.progressIndicator);
 
-        selectImageButton.setOnClickListener(v -> selectImages());
-        convertButton.setOnClickListener(v -> convertToPdf());
+        selectButton.setOnClickListener(v -> imagePickerLauncher.launch("image/*"));
+        convertButton.setOnClickListener(v -> {
+            if (selectedImageUris.isEmpty()) {
+                Toast.makeText(this, R.string.select_image_to_convert, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            createPdf();
+        });
         convertButton.setEnabled(false);
     }
 
     private void setupProgressIndicator() {
         progressIndicator.setVisibility(View.GONE);
-    }
-
-    private void selectImages() {
-        imagePickerLauncher.launch("image/*");
     }
 
     private void updateUIForSelectedImages() {
@@ -141,7 +143,7 @@ public class ImageToPdfActivity extends AppCompatActivity {
         return result;
     }
 
-    private void convertToPdf() {
+    private void createPdf() {
         if (selectedImageUris.isEmpty()) {
             Toast.makeText(this, R.string.select_image_to_convert, Toast.LENGTH_SHORT).show();
             return;
@@ -171,7 +173,7 @@ public class ImageToPdfActivity extends AppCompatActivity {
     private void startConversion(Uri outputUri) {
         progressIndicator.setVisibility(View.VISIBLE);
         convertButton.setEnabled(false);
-        selectImageButton.setEnabled(false);
+        selectButton.setEnabled(false);
 
         new Thread(() -> {
             try {
@@ -179,19 +181,15 @@ public class ImageToPdfActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     progressIndicator.setVisibility(View.GONE);
                     convertButton.setEnabled(true);
-                    selectImageButton.setEnabled(true);
-                    Toast.makeText(this, R.string.image_to_pdf_success, Toast.LENGTH_SHORT).show();
-                    // Clear selections after successful conversion
-                    selectedImageUris.clear();
-                    updateUIForSelectedImages();
+                    selectButton.setEnabled(true);
+                    Toast.makeText(this, R.string.conversion_success, Toast.LENGTH_SHORT).show();
+                    finish();
                 });
             } catch (Exception e) {
-                runOnUiThread(() -> {
-                    progressIndicator.setVisibility(View.GONE);
-                    convertButton.setEnabled(true);
-                    selectImageButton.setEnabled(true);
-                    Toast.makeText(this, R.string.image_to_pdf_error, Toast.LENGTH_SHORT).show();
-                });
+                progressIndicator.setVisibility(View.GONE);
+                convertButton.setEnabled(true);
+                selectButton.setEnabled(true);
+                Toast.makeText(this, R.string.image_to_pdf_error, Toast.LENGTH_SHORT).show();
             }
         }).start();
     }

@@ -119,13 +119,13 @@ public class MergePdfActivity extends AppCompatActivity {
                 PdfMerger.mergePdfs(this, pdfUris, outputUri);
                 runOnUiThread(() -> {
                     progressDialog.dismiss();
-                    Toast.makeText(this, R.string.merge_pdf_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.merge_success, Toast.LENGTH_SHORT).show();
                     finish();
                 });
             } catch (Exception e) {
                 runOnUiThread(() -> {
                     progressDialog.dismiss();
-                    Toast.makeText(this, getString(R.string.merge_pdf_error) + ": " + e.getMessage(),
+                    Toast.makeText(this, getString(R.string.merge_error) + ": " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 });
             }
