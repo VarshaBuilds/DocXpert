@@ -63,15 +63,15 @@ dependencies {
     
     // PDF libraries
     implementation("com.itextpdf:itextg:5.5.10")
-    implementation("com.tom-roush:pdfbox-android:2.0.27.0") // Added PDFBox for Android
+    implementation("com.tom-roush:pdfbox-android:2.0.27.0")
     
     // Apache POI dependencies for Word document processing
     implementation("org.apache.poi:poi:5.2.3")
     implementation("org.apache.poi:poi-ooxml:5.2.3") {
-        exclude(group = "org.apache.xmlbeans", module = "xmlbeans") // Exclude to avoid conflict
+        exclude(group = "org.apache.xmlbeans", module = "xmlbeans")
     }
     implementation("org.apache.poi:poi-scratchpad:5.2.3")
-    implementation("org.apache.xmlbeans:xmlbeans:5.1.1") // Explicitly define XMLBeans version
+    implementation("org.apache.xmlbeans:xmlbeans:5.1.1")
     
     // Support libraries for Apache POI
     implementation("org.apache.commons:commons-compress:1.23.0")
