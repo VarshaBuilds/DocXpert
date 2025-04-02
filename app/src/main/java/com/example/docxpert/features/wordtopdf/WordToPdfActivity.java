@@ -20,14 +20,19 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Paragraph;
 
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.usermodel.CharacterRun;
+import org.apache.poi.hwpf.usermodel.Picture;
+import org.apache.poi.hwpf.usermodel.Range;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -39,7 +44,7 @@ import org.apache.poi.xwpf.usermodel.XWPFPicture;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 
 import java.io.*;
-import java.util.List;
+import java.util.*;
 
 public class WordToPdfActivity extends AppCompatActivity {
     private TextView selectedFileText;
@@ -78,7 +83,9 @@ public class WordToPdfActivity extends AppCompatActivity {
         progressIndicator = findViewById(R.id.progressIndicator);
 
         selectButton.setOnClickListener(v -> pickWordLauncher.launch(new String[]{
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  // .docx only
+            "application/msword",                   // .doc
+            "application/vnd.ms-word",             // .doc
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  // .docx
         }));
         convertButton.setOnClickListener(v -> convertToPdf());
         convertButton.setEnabled(false);
@@ -174,7 +181,14 @@ public class WordToPdfActivity extends AppCompatActivity {
                 Document document = new Document(PageSize.A4, 50, 50, 50, 50);
                 PdfWriter.getInstance(document, outputStream);
                 document.open();
-                processDocx(document, documentContent);
+
+                String fileName = SafUtils.getFileName(this, selectedWordUri);
+                if (fileName.toLowerCase().endsWith(".docx")) {
+                    processDocx(document, documentContent);
+                } else {
+                    processDoc(document, documentContent);
+                }
+
                 document.close();
                 outputStream.close();
                 Toast.makeText(this, R.string.word_to_pdf_success, Toast.LENGTH_SHORT).show();
@@ -191,67 +205,285 @@ public class WordToPdfActivity extends AppCompatActivity {
     private void processDocx(Document document, byte[] content) throws Exception {
         XWPFDocument docx = new XWPFDocument(new ByteArrayInputStream(content));
         
-        // Process tables first
+        // Create a list to store all elements with their positions
+        List<DocElement> elements = new ArrayList<>();
+        
+        // Process tables and store their positions
         for (XWPFTable table : docx.getTables()) {
-            int numColumns = table.getRow(0).getTableCells().size();
-            PdfPTable pdfTable = new PdfPTable(numColumns);
-            pdfTable.setWidthPercentage(100);
-            
-            for (XWPFTableRow row : table.getRows()) {
-                for (XWPFTableCell cell : row.getTableCells()) {
-                    PdfPCell pdfCell = new PdfPCell();
-                    
-                    for (XWPFParagraph cellParagraph : cell.getParagraphs()) {
-                        Paragraph p = new Paragraph();
-                        p.setAlignment(getAlignment(cellParagraph.getAlignment()));
+            int tableIndex = docx.getPosOfTable(table);
+            elements.add(new DocElement(tableIndex, () -> {
+                PdfPTable pdfTable = new PdfPTable(table.getNumberOfRows() > 0 ? table.getRow(0).getTableCells().size() : 1);
+                pdfTable.setWidthPercentage(100);
+                
+                // Process table rows
+                for (XWPFTableRow row : table.getRows()) {
+                    for (XWPFTableCell cell : row.getTableCells()) {
+                        PdfPCell pdfCell = new PdfPCell();
                         
-                        for (XWPFRun run : cellParagraph.getRuns()) {
-                            Font font = createFont(run);
-                            String text = run.getText(0);
-                            if (text != null) {
-                                Chunk chunk = new Chunk(text, font);
-                                p.add(chunk);
+                        // Process cell content
+                        for (XWPFParagraph cellParagraph : cell.getParagraphs()) {
+                            Paragraph cellContent = new Paragraph();
+                            
+                            for (XWPFRun run : cellParagraph.getRuns()) {
+                                // Process text in cell
+                                String text = run.getText(0);
+                                if (text != null && !text.trim().isEmpty()) {
+                                    Font font = FontFactory.getFont(FontFactory.HELVETICA, 12);
+                                    if (run.isBold()) font.setStyle(Font.BOLD);
+                                    if (run.isItalic()) font.setStyle(font.getStyle() | Font.ITALIC);
+                                    cellContent.add(new Chunk(text, font));
+                                }
+                                
+                                // Process images in cell
+                                for (XWPFPicture picture : run.getEmbeddedPictures()) {
+                                    try {
+                                        byte[] imageData = picture.getPictureData().getData();
+                                        Image image = Image.getInstance(imageData);
+                                        
+                                        // Scale image to fit cell
+                                        image.scaleToFit(pdfTable.getAbsoluteWidths()[0] - 10, 100);
+                                        cellContent.add(new Chunk(image, 0, 0, true));
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
                             }
-                            processRunImages(document, run, p);
+                            
+                            pdfCell.addElement(cellContent);
                         }
-                        pdfCell.addElement(p);
+                        
+                        // Set cell alignment
+                        pdfCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        pdfCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        
+                        pdfTable.addCell(pdfCell);
                     }
-                    pdfTable.addCell(pdfCell);
                 }
-            }
-            document.add(pdfTable);
-            document.add(new Paragraph("\n"));
+                
+                document.add(pdfTable);
+                document.add(new Paragraph("\n"));
+            }));
         }
         
-        // Process paragraphs and text with inline images
+        // Process paragraphs and store their positions
         for (XWPFParagraph paragraph : docx.getParagraphs()) {
-            Paragraph pdfParagraph = new Paragraph();
-            pdfParagraph.setAlignment(getAlignment(paragraph.getAlignment()));
-            pdfParagraph.setSpacingBefore(paragraph.getSpacingBefore() / 20f);
-            pdfParagraph.setSpacingAfter(paragraph.getSpacingAfter() / 20f);
-            
-            for (XWPFRun run : paragraph.getRuns()) {
-                Font font = createFont(run);
-                String text = run.getText(0);
-                if (text != null) {
-                    Chunk chunk = new Chunk(text, font);
-                    if (run.getTextPosition() > 0) {
-                        chunk.setTextRise(run.getTextPosition() / 2f);
+            int parIndex = docx.getPosOfParagraph(paragraph);
+            elements.add(new DocElement(parIndex, () -> {
+                Paragraph pdfPar = new Paragraph();
+                
+                // Process runs (text and inline images)
+                for (XWPFRun run : paragraph.getRuns()) {
+                    // Process text
+                    String text = run.getText(0);
+                    if (text != null && !text.trim().isEmpty()) {
+                        Font font = FontFactory.getFont(FontFactory.HELVETICA, 12);
+                        if (run.isBold()) font.setStyle(Font.BOLD);
+                        if (run.isItalic()) font.setStyle(font.getStyle() | Font.ITALIC);
+                        if (run.isStrikeThrough()) font.setStyle(font.getStyle() | Font.STRIKETHRU);
+                        if (run.getUnderline() != UnderlinePatterns.NONE) font.setStyle(font.getStyle() | Font.UNDERLINE);
+                        
+                        Chunk chunk = new Chunk(text, font);
+                        pdfPar.add(chunk);
                     }
-                    pdfParagraph.add(chunk);
+                    
+                    // Process inline images
+                    List<XWPFPicture> pictures = run.getEmbeddedPictures();
+                    for (XWPFPicture picture : pictures) {
+                        try {
+                            byte[] imageData = picture.getPictureData().getData();
+                            Image image = Image.getInstance(imageData);
+                            
+                            // Try to get original dimensions
+                            try {
+                                org.apache.xmlbeans.XmlObject xmlObject = picture.getCTPicture();
+                                if (xmlObject != null) {
+                                    // Try to maintain original size if possible
+                                    BitmapFactory.Options options = new BitmapFactory.Options();
+                                    options.inJustDecodeBounds = true;
+                                    BitmapFactory.decodeByteArray(imageData, 0, imageData.length, options);
+                                    
+                                    if (options.outWidth > 0 && options.outHeight > 0) {
+                                        float width = options.outWidth * 72f / 96f;
+                                        float height = options.outHeight * 72f / 96f;
+                                        
+                                        if (width > PageSize.A4.getWidth() - 100) {
+                                            float ratio = (PageSize.A4.getWidth() - 100) / width;
+                                            width *= ratio;
+                                            height *= ratio;
+                                        }
+                                        
+                                        image.scaleToFit(width, height);
+                                    }
+                                }
+                            } catch (Exception e) {
+                                // If we can't get original dimensions, use default scaling
+                                image.scaleToFit(300, 300);
+                            }
+                            
+                            // Add image inline with text
+                            Chunk imageChunk = new Chunk(image, 0, 0, true);
+                            pdfPar.add(imageChunk);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-                processRunImages(document, run, pdfParagraph);
-            }
-            
-            if (!pdfParagraph.isEmpty()) {
-                document.add(pdfParagraph);
-            }
+                
+                // Set paragraph alignment
+                switch (paragraph.getAlignment()) {
+                    case CENTER:
+                        pdfPar.setAlignment(Element.ALIGN_CENTER);
+                        break;
+                    case RIGHT:
+                        pdfPar.setAlignment(Element.ALIGN_RIGHT);
+                        break;
+                    case BOTH:
+                        pdfPar.setAlignment(Element.ALIGN_JUSTIFIED);
+                        break;
+                    default:
+                        pdfPar.setAlignment(Element.ALIGN_LEFT);
+                }
+                
+                // Add spacing
+                pdfPar.setSpacingBefore(paragraph.getSpacingBefore() / 20f);
+                pdfPar.setSpacingAfter(paragraph.getSpacingAfter() / 20f);
+                
+                if (!pdfPar.isEmpty()) {
+                    document.add(pdfPar);
+                }
+            }));
+        }
+        
+        // Sort elements by their position and add them to the document
+        Collections.sort(elements);
+        for (DocElement element : elements) {
+            element.add();
         }
         
         docx.close();
     }
 
-    private void processRunImages(Document document, XWPFRun run, Paragraph paragraph) throws Exception {
+    private void processDoc(Document document, byte[] content) throws Exception {
+        POIFSFileSystem fs = new POIFSFileSystem(new ByteArrayInputStream(content));
+        HWPFDocument doc = new HWPFDocument(fs);
+        Range range = doc.getRange();
+
+        // Process paragraphs and their content
+        for (int i = 0; i < range.numParagraphs(); i++) {
+            org.apache.poi.hwpf.usermodel.Paragraph par = range.getParagraph(i);
+            com.itextpdf.text.Paragraph pdfPar = new com.itextpdf.text.Paragraph();
+            
+            // Process text runs
+            for (int j = 0; j < par.numCharacterRuns(); j++) {
+                CharacterRun run = par.getCharacterRun(j);
+                String text = run.text();
+                
+                if (text != null && !text.trim().isEmpty()) {
+                    // Create font with styling
+                    Font font = FontFactory.getFont(FontFactory.HELVETICA, 12);
+                    if (run.isBold()) font.setStyle(Font.BOLD);
+                    if (run.isItalic()) font.setStyle(font.getStyle() | Font.ITALIC);
+                    if (run.getUnderlineCode() > 0) font.setStyle(font.getStyle() | Font.UNDERLINE);
+                    
+                    Chunk chunk = new Chunk(text, font);
+                    pdfPar.add(chunk);
+                }
+            }
+
+            // Add paragraph to document if it has content
+            if (!pdfPar.isEmpty()) {
+                // Set paragraph alignment
+                switch (par.getJustification()) {
+                    case 1:
+                        pdfPar.setAlignment(Element.ALIGN_CENTER);
+                        break;
+                    case 2:
+                        pdfPar.setAlignment(Element.ALIGN_RIGHT);
+                        break;
+                    case 3:
+                        pdfPar.setAlignment(Element.ALIGN_JUSTIFIED);
+                        break;
+                    default:
+                        pdfPar.setAlignment(Element.ALIGN_LEFT);
+                }
+                
+                // Add spacing
+                pdfPar.setSpacingBefore(par.getSpacingBefore() / 20f);
+                pdfPar.setSpacingAfter(par.getSpacingAfter() / 20f);
+                
+                document.add(pdfPar);
+            }
+        }
+
+        // Process pictures
+        List<Picture> pictures = doc.getPicturesTable().getAllPictures();
+        if (pictures != null && !pictures.isEmpty()) {
+            for (Picture pic : pictures) {
+                byte[] imageData = pic.getContent();
+                if (imageData != null && imageData.length > 0) {
+                    try {
+                        Image image = Image.getInstance(imageData);
+                        
+                        // Get image dimensions using BitmapFactory
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inJustDecodeBounds = true;
+                        BitmapFactory.decodeByteArray(imageData, 0, imageData.length, options);
+                        
+                        if (options.outWidth > 0 && options.outHeight > 0) {
+                            float width = options.outWidth * 72f / 96f;
+                            float height = options.outHeight * 72f / 96f;
+                            
+                            if (width > PageSize.A4.getWidth() - 100) {
+                                float ratio = (PageSize.A4.getWidth() - 100) / width;
+                                width *= ratio;
+                                height *= ratio;
+                            }
+                            
+                            image.scaleToFit(width, height);
+                        } else {
+                            image.scaleToFit(300, 300);
+                        }
+                        
+                        image.setAlignment(Image.ALIGN_CENTER);
+                        document.add(image);
+                        document.add(new com.itextpdf.text.Paragraph("\n"));
+                    } catch (Exception e) {
+                        // Skip this image if there's an error
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        doc.close();
+        fs.close();
+    }
+
+    // Helper class to maintain document element order
+    private static class DocElement implements Comparable<DocElement> {
+        private final int position;
+        private final DocumentElement element;
+
+        DocElement(int position, DocumentElement element) {
+            this.position = position;
+            this.element = element;
+        }
+
+        void add() throws Exception {
+            element.add();
+        }
+
+        @Override
+        public int compareTo(DocElement other) {
+            return Integer.compare(this.position, other.position);
+        }
+    }
+
+    private interface DocumentElement {
+        void add() throws Exception;
+    }
+
+    private void processRunImages(Document document, XWPFRun run, com.itextpdf.text.Paragraph paragraph) throws Exception {
         List<XWPFPicture> pictures = run.getEmbeddedPictures();
         if (pictures != null && !pictures.isEmpty()) {
             for (XWPFPicture picture : pictures) {
