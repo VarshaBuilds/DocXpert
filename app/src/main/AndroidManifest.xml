@@ -79,8 +79,9 @@
 
         <activity
             android:name=".features.ocr.OcrActivity"
-            android:label="@string/extract_text"
-            android:parentActivityName=".MainActivity">
+            android:label="@string/ocr_extract_text"
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -89,6 +90,12 @@
         <activity
             android:name=".features.pdftotext.PdfToTextActivity"
             android:label="@string/pdf_to_text"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.wordtopdf.WordToPdfActivity"
+            android:label="@string/word_to_pdf"
             android:parentActivityName=".MainActivity"
             android:exported="false" />
 

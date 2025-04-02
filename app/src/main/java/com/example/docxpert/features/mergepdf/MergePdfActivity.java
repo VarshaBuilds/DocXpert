@@ -125,8 +125,7 @@ public class MergePdfActivity extends AppCompatActivity {
             } catch (Exception e) {
                 runOnUiThread(() -> {
                     progressDialog.dismiss();
-                    Toast.makeText(this, getString(R.string.merge_error) + ": " + e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.merge_error, Toast.LENGTH_SHORT).show();
                 });
             }
         }).start();

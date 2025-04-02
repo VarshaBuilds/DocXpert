@@ -15,17 +15,44 @@
     <string name="selected_file_status">Selected file status</string>
     <string name="select_pdf">Select PDF</string>
     <string name="select_pdf_first">Please select a PDF file first</string>
+    <string name="select_word">Select Word Document</string>
+    <string name="select_image">Select Image</string>
+    
+    <!-- PDF Item -->
+    <string name="pdf_icon">PDF file icon</string>
+    <string name="remove_pdf">Remove PDF</string>
+    
+    <!-- Word to PDF -->
+    <string name="word_to_pdf">Word to PDF</string>
+    <string name="word_to_pdf_desc">Convert Word documents to PDF format</string>
+    <string name="select_word_file">Select Word File</string>
+    <string name="select_word_to_convert">Please select a Word document to convert</string>
+    <string name="word_to_pdf_converting">Converting Word document to PDF…</string>
+    <string name="word_to_pdf_success">PDF created successfully</string>
+    <string name="word_to_pdf_error">Error converting Word to PDF</string>
+    <string name="word_to_pdf_button_desc">Convert the selected Word file to PDF</string>
+    <string name="convert_to_pdf">Convert to PDF</string>
+    
+    <!-- Image to PDF -->
+    <string name="image_to_pdf">Image to PDF</string>
+    <string name="image_to_pdf_desc">Convert images to PDF format</string>
+    <string name="select_images">Select Images</string>
+    <string name="image_to_pdf_converting">Converting images to PDF…</string>
+    <string name="image_to_pdf_success">Images converted to PDF successfully</string>
+    <string name="image_to_pdf_error">Error converting images to PDF</string>
+    <string name="select_image_to_convert">Please select an image to convert</string>
+    <string name="image_convert_to_pdf">Convert to PDF</string>
     
     <!-- PDF to Word -->
     <string name="pdf_to_word">PDF to Word</string>
-    <string name="pdf_to_word_desc">Convert PDF files to Word documents</string>
+    <string name="pdf_to_word_desc">Convert PDF files to Word format</string>
     <string name="convert_to_word">Convert to Word</string>
     <string name="pdf_to_word_success">PDF converted to Word successfully</string>
     <string name="pdf_to_word_error">Error converting PDF to Word</string>
     
     <!-- Merge PDF -->
     <string name="merge_pdf">Merge PDF</string>
-    <string name="merge_pdf_desc">Combine multiple PDF files into one</string>
+    <string name="merge_pdf_desc">Combine multiple PDF files</string>
     <string name="add_pdf">Add PDF</string>
     <string name="merge">Merge</string>
     <string name="merging">Merging PDFs…</string>
@@ -41,7 +68,7 @@
     <string name="splitting_pdf">Splitting PDF…</string>
     <string name="split_success">PDF split successfully</string>
     <string name="split_error">Error splitting PDF</string>
-    <string name="page_range_hint">e.g., 1–3, 4, 5–8</string>
+    <string name="page_range_hint">Enter page range (e.g., 1–3,5,7–10)</string>
     <string name="page_range_helper">• Use commas to separate individual pages (1,3,5)\n• Use hyphen for page ranges (1-5)\n• You can combine both (1-3,5,7-9)</string>
     <string name="enter_page_range">Please enter the pages you want to extract</string>
     <string name="invalid_page_range">Invalid format. Use numbers and hyphens (e.g., 1-3,5,7-9)</string>
@@ -49,40 +76,34 @@
     
     <!-- Lock PDF -->
     <string name="lock_pdf">Lock PDF</string>
-    <string name="lock_pdf_desc">Protect your PDF with a password</string>
-    <string name="enter_password">Enter Password</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="lock_pdf_desc">Encrypt PDF with password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="password_requirements">• Password must be at least 6 characters long\n• Use a combination of letters, numbers, and special characters\n• Make sure to remember your password</string>
     <string name="passwords_dont_match">Passwords do not match</string>
     <string name="password_too_short">Password must be at least 6 characters long</string>
     <string name="locking_pdf">Locking PDF…</string>
     <string name="lock_success">PDF locked successfully</string>
     <string name="lock_error">Error locking PDF</string>
+    <string name="passwords_not_match">Passwords do not match</string>
+    <string name="password_empty">Password cannot be empty</string>
     
     <!-- Unlock PDF -->
     <string name="unlock_pdf">Unlock PDF</string>
-    <string name="unlock_pdf_desc">Remove password protection from PDF</string>
+    <string name="unlock_pdf_desc">Remove PDF password protection</string>
     <string name="unlock">Unlock</string>
     <string name="unlocking_pdf">Unlocking PDF…</string>
     <string name="unlock_success">PDF unlocked successfully</string>
     <string name="unlock_error">Error unlocking PDF</string>
     <string name="incorrect_password">Incorrect password</string>
-    <string name="enter_pdf_password">Enter PDF Password</string>
-    <string name="unlock_pdf_helper">Enter the password that was used to protect this PDF file</string>
-    
-    <!-- Word to PDF -->
-    <string name="word_to_pdf">Word to PDF</string>
-    <string name="word_to_pdf_description">Convert Word documents to PDF format</string>
-    <string name="word_to_pdf_icon">Word to PDF icon</string>
-    <string name="select_word_file">Select Word File</string>
-    <string name="word_convert_to_pdf">Convert to PDF</string>
-    <string name="pdf_icon">PDF Icon</string>
-    <string name="remove_pdf">Remove PDF</string>
+    <string name="enter_pdf_password">Enter PDF password</string>
+    <string name="unlock_pdf_helper">Enter the password to unlock the PDF</string>
+    <string name="wrong_password">Wrong password</string>
     
     <!-- Sign PDF -->
     <string name="sign_pdf">Sign PDF</string>
-    <string name="sign_pdf_desc">Add your signature to PDF documents</string>
-    <string name="clear_signature">Clear</string>
+    <string name="sign_pdf_desc">Add signature to PDF files</string>
+    <string name="clear_signature">Clear Signature</string>
     <string name="draw_signature_first">Please draw your signature first</string>
     <string name="signing_pdf">Signing PDF…</string>
     <string name="signing_failed">Failed to sign PDF</string>
@@ -105,29 +126,18 @@
     <!-- Compress Image -->
     <string name="compress_image">Compress Image</string>
     <string name="compress_image_desc">Reduce image file size</string>
-    <string name="select_image">Select Image</string>
     <string name="select_image_to_compress">Select an image to compress</string>
     <string name="image_preview">Image preview</string>
     <string name="compress_image_button_desc">Compress the selected image</string>
     <string name="compressing_image">Compressing image…</string>
     <string name="image_compressed">Image compressed successfully</string>
     
-    <!-- Image to PDF -->
-    <string name="image_to_pdf">Image to PDF</string>
-    <string name="image_to_pdf_desc">Convert images to PDF</string>
-    <string name="select_images">Select Images</string>
-    <string name="converting_to_pdf">Converting to PDF…</string>
-    <string name="conversion_success">Images converted to PDF successfully</string>
-    <string name="image_to_pdf_error">Error converting images to PDF</string>
-    <string name="select_image_to_convert">Please select an image to convert</string>
-    <string name="image_convert_to_pdf">Convert to PDF</string>
-    
     <!-- PDF to Image -->
     <string name="pdf_to_image">PDF to Image</string>
     <string name="pdf_to_image_desc">Convert PDF pages to images</string>
     <string name="select_pdf_to_convert">Please select a PDF to convert</string>
     <string name="page_count">Number of pages: %1$d</string>
-    <string name="converting_pdf">Converting PDF to images…</string>
+    <string name="pdf_to_image_converting">Converting PDF to images…</string>
     <string name="pdf_to_image_success">PDF converted to images successfully</string>
     <string name="pdf_to_image_error">Error converting PDF to images</string>
     <string name="convert_to_images">Convert to Images</string>
@@ -136,19 +146,19 @@
     <string name="pdf_to_text">PDF to Text</string>
     <string name="pdf_to_text_desc">Extract text from PDF files</string>
     <string name="select_pdf_to_extract">Select a PDF file to extract text</string>
-    <string name="extracting_text_from_pdf">Extracting text from PDF…</string>
-    <string name="pdf_text_extracted">Text extracted successfully</string>
-    <string name="pdf_text_extraction_error">Error extracting text from PDF</string>
+    <string name="pdf_to_text_extracting">Extracting text from PDF…</string>
+    <string name="pdf_to_text_success">Text extracted successfully</string>
+    <string name="pdf_to_text_error">Error extracting text from PDF</string>
     <string name="save_extracted_text">Save Text</string>
     <string name="text_saved">Text saved successfully</string>
     <string name="text_save_error">Error saving text file</string>
     <string name="extracted_text_will_appear_here">Extracted text will appear here</string>
     
     <!-- OCR Feature -->
-    <string name="extract_text">Extract Text</string>
-    <string name="extract_text_desc">Extract text from images</string>
-    <string name="select_image_to_extract">Please select an image to extract text from</string>
-    <string name="extracting_text">Extracting text…</string>
-    <string name="text_extracted_success">Text extracted successfully</string>
-    <string name="error_extracting_text">Error extracting text: %1$s</string>
+    <string name="ocr_extract_text">Extract Text</string>
+    <string name="ocr_extract_text_desc">Extract text from images</string>
+    <string name="ocr_select_image">Please select an image to extract text from</string>
+    <string name="ocr_extracting">Extracting text…</string>
+    <string name="ocr_success">Text extracted successfully</string>
+    <string name="ocr_error">Error extracting text: %1$s</string>
 </resources>

@@ -52,7 +52,7 @@ public class OcrActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.extract_text);
+            getSupportActionBar().setTitle(R.string.ocr_extract_text);
         }
     }
 
@@ -74,7 +74,7 @@ public class OcrActivity extends AppCompatActivity {
 
     private void extractText() {
         if (selectedImageUri == null) {
-            Toast.makeText(this, R.string.select_image_to_extract, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.ocr_select_image, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -88,7 +88,7 @@ public class OcrActivity extends AppCompatActivity {
                     progressIndicator.setVisibility(View.GONE);
                     extractTextButton.setEnabled(true);
                     OcrActivity.this.extractedText.setText(extractedText);
-                    Toast.makeText(OcrActivity.this, R.string.text_extracted_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OcrActivity.this, R.string.ocr_success, Toast.LENGTH_SHORT).show();
                 });
             }
 
@@ -98,7 +98,7 @@ public class OcrActivity extends AppCompatActivity {
                     progressIndicator.setVisibility(View.GONE);
                     extractTextButton.setEnabled(true);
                     Toast.makeText(OcrActivity.this, 
-                            getString(R.string.error_extracting_text, e.getMessage()), 
+                            getString(R.string.ocr_error, e.getMessage()), 
                             Toast.LENGTH_SHORT).show();
                 });
             }

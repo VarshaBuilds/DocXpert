@@ -19,6 +19,7 @@ import com.example.docxpert.features.imagetopdf.ImageToPdfActivity;
 import com.example.docxpert.features.pdftoimage.PdfToImageActivity;
 import com.example.docxpert.features.ocr.OcrActivity;
 import com.example.docxpert.features.pdftotext.PdfToTextActivity;
+import com.example.docxpert.features.wordtopdf.WordToPdfActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
         // Setup PDF to Text Card
         MaterialCardView pdfToTextCard = findViewById(R.id.pdfToTextCard);
         pdfToTextCard.setOnClickListener(v -> startActivity(new Intent(this, PdfToTextActivity.class)));
+
+        // Setup Word to PDF Card
+        MaterialCardView wordToPdfCard = findViewById(R.id.wordToPdfCard);
+        wordToPdfCard.setOnClickListener(v -> startActivity(new Intent(this, WordToPdfActivity.class)));
     }
 
     @Override

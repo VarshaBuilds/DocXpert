@@ -48,7 +48,7 @@ public class PdfToTextActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle(R.string.pdf_to_text);
         }
     }
 
@@ -123,14 +123,13 @@ public class PdfToTextActivity extends AppCompatActivity {
                     extractedTextView.setText(extractedText);
                     saveButton.setEnabled(true);
                     progressIndicator.setVisibility(View.GONE);
-                    Toast.makeText(this, R.string.pdf_text_extracted, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.pdf_to_text_success, Toast.LENGTH_SHORT).show();
                 });
             } catch (Exception e) {
                 runOnUiThread(() -> {
                     progressIndicator.setVisibility(View.GONE);
                     saveButton.setEnabled(false);
-                    Toast.makeText(this, getString(R.string.pdf_text_extraction_error) + ": " + e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.pdf_to_text_error), Toast.LENGTH_SHORT).show();
                 });
             }
         }).start();
