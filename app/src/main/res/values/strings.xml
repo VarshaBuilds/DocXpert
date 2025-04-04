@@ -46,9 +46,11 @@
     <!-- PDF to Word -->
     <string name="pdf_to_word">PDF to Word</string>
     <string name="pdf_to_word_desc">Convert PDF files to Word format</string>
+    <string name="pdf_to_word_description">Convert PDF files to Word documents (.docx format). Select a PDF file and click convert to start the process.</string>
+    <string name="select_pdf_file">Select PDF File</string>
     <string name="convert_to_word">Convert to Word</string>
-    <string name="pdf_to_word_success">PDF converted to Word successfully</string>
-    <string name="pdf_to_word_error">Error converting PDF to Word</string>
+    <string name="pdf_to_word_success">PDF successfully converted to Word!</string>
+    <string name="pdf_to_word_error">Error converting PDF to Word: %1$s</string>
     
     <!-- Merge PDF -->
     <string name="merge_pdf">Merge PDF</string>

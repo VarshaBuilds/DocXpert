@@ -93,7 +93,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup Word to PDF Card
         MaterialCardView wordToPdfCard = findViewById(R.id.wordToPdfCard);
-        wordToPdfCard.setOnClickListener(v -> startActivity(new Intent(this, WordToPdfActivity.class)));
+        wordToPdfCard.setOnClickListener(v -> {
+            Intent intent = new Intent(this, WordToPdfActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     @Override
