@@ -1,6 +1,4 @@
-# DocXpert
-
-![DocXpert Logo](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+# DocXpert - Your All-in-One Document Management Solution for Android!
 
 ## Overview
 
@@ -27,12 +25,6 @@ DocXpert is a comprehensive Android application designed to provide users with a
 
 ### Document Conversion
 - **Word to PDF**: Convert Word documents to PDF format
-
-## Screenshots
-
-| Main Screen | Feature Selection | Document Processing |
-|-------------|-------------------|---------------------|
-| [Screenshot] | [Screenshot] | [Screenshot] |
 
 ## Installation
 
